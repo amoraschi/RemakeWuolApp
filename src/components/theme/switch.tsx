@@ -3,12 +3,15 @@
 import { useTheme } from 'next-themes'
 import { Sun, Moon } from 'lucide-react'
 import { Button } from '@/components/ui/button'
+import { useEffect } from 'react'
 
 export default function ThemeSwitch () {
   const { theme, setTheme } = useTheme()
 
   return (
-    <>
+    <div
+      className='fixed bottom-4 right-4 z-50'
+    >
       {
         theme === 'light' ? (
           <Button
@@ -30,6 +33,6 @@ export default function ThemeSwitch () {
           </Button>
         )
       }
-    </>
+    </div>
   )
 }

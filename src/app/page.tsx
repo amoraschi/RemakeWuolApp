@@ -9,6 +9,7 @@ export default function Home () {
   const router = useRouter()
 
   useEffect(() => {
+    // console.log('Redirecting to /login')
     router.push('/login')
   }, [])
 
