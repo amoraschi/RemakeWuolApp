@@ -3,76 +3,89 @@ import { HoverCard, HoverCardTrigger, HoverCardContent } from '@/components/ui/h
 import { Button } from '@/components/ui/button'
 import { Card } from '@/components/ui/card'
 import { UserRound } from 'lucide-react'
+import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover'
 
 export default function SidebarProfile () {
   return (
-    <Card
-      className='flex items-center mt-auto p-2 mx-1 mb-1 w-full'
+    <div
+      className='flex mt-auto px-1 mb-1 w-full'
     >
-      <Avatar
-        className='flex items-center'
+      <Card
+        className='flex items-center p-2 gap-2 w-full'
       >
-        <AvatarImage
-          src='https://avatars.githubusercontent.com/u/68395930?v=4'
-          alt='Avatar'
-          className='h-7 w-7 rounded-full'
-        />
-        <AvatarFallback>
-          <UserRound className='h-5 w-5' />
-        </AvatarFallback>
-      </Avatar>
-      <div
-        className='flex flex-col w-full overflow-hidden'
-      >
-        <span
-          className='text-sm font-semibold pt-1'
+        <Avatar
+          className='grid place-items-center w-fit'
         >
-          Usuario
-        </span>
-        <HoverCard>
-          <HoverCardTrigger
-            asChild
+          <AvatarImage
+            src='https://avatars.githubusercontent.com/u/68395930?v=4'
+            alt='Avatar'
+            className='h-7 w-7 rounded-full'
+          />
+          <AvatarFallback>
+            <UserRound
+              className='h-5 w-5'
+            />
+          </AvatarFallback>
+        </Avatar>
+        <div
+          className='flex flex-col w-full overflow-hidden'
+        >
+          <span
+            className='text-sm font-semibold pt-1'
           >
-            <Button
-              variant='link'
-              className='text-xs text-gray-500 h-fit w-fit p-0 pb-1'
+            Usuario
+          </span>
+          <Popover>
+            <PopoverTrigger
+              asChild
             >
-              Grado en Ingeniería Informática - Ingeniería del Software
-            </Button>
-          </HoverCardTrigger>
-          <HoverCardContent>
-            <div
-              className='flex'
-            >
-              <Avatar
-                className='flex items-center'
+              <Button
+                variant='link'
+                className='text-xs text-gray-500 h-fit w-fit p-0 pb-1'
               >
-                <AvatarImage
-                  src='https://avatars.githubusercontent.com/u/68395930?v=4'
-                  alt='Avatar'
-                  className='h-7 w-7 rounded-full'
-                />
-                <AvatarFallback>
-                  <UserRound className='h-5 w-5' />
-                </AvatarFallback>
-              </Avatar>
-              <div>
-                <span
-                  className='text-sm font-semibold'
+                Grado en Ingeniería Informática - Ingeniería del Software
+              </Button>
+            </PopoverTrigger>
+            <PopoverContent>
+              <div
+                className='flex'
+              >
+                <Avatar
+                  className='flex items-center'
                 >
-                  Universidad de Sevilla
-                </span>
-                <br />
-                <span
-                  className='text-xs text-gray-500'
-                >
-                  Escuela Técnica Superior de Ingeniería Informática
-                </span>
+                  <AvatarImage
+                    src='https://avatars.githubusercontent.com/u/68395930?v=4'
+                    alt='Avatar'
+                    className='h-7 w-7 rounded-full'
+                  />
+                  <AvatarFallback>
+                    <UserRound className='h-5 w-5' />
+                  </AvatarFallback>
+                </Avatar>
+                <div>
+                  <span
+                    className='text-md font-semibold'
+                  >
+                    Universidad de Sevilla
+                  </span>
+                  <br />
+                  <span
+                    className='text-sm'
+                  >
+                    Escuela Técnica Superior de Ingeniería Informática
+                  </span>
+                  <br />
+                  <span
+                    className='text-xs'
+                  >
+                    Grado en Ingeniería Informática - Ingeniería del Software
+                  </span>
+                </div>
               </div>
-            </div>
-          </HoverCardContent>
-        </HoverCard>
-      </div>
-    </Card>
+            </PopoverContent>
+          </Popover>
+        </div>
+      </Card>
+    </div>
   )
 }

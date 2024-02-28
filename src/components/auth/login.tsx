@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { Loader2 } from 'lucide-react'
 import { z } from 'zod'
@@ -11,13 +11,16 @@ import {
   FormField,
   FormLabel,
   FormControl,
-  FormDescription,
   FormMessage,
   FormItem
 } from '@/components/ui/form'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
+import { getTokens } from '@/lib/auth'
+import { useToast } from '@/components/ui/use-toast'
+import { ToastAction } from '@/components/ui/toast'
+import { getConfig, getLocalItem, setConfig, setLocaItem } from '@/lib/storage'
 
 const schema = z.object({
   username: z.string().email('Correo electrónico inválido'),
@@ -30,6 +33,7 @@ const schema = z.object({
 
 export default function AuthLogin () {
   const [isDisabled, setIsDisabled] = useState(false)
+  const { toast } = useToast()
   const router = useRouter()
   const form = useForm<z.infer<typeof schema>>({
     resolver: zodResolver(schema),
@@ -39,11 +43,61 @@ export default function AuthLogin () {
     }
   })
 
-  const onSubmit = (data: z.infer<typeof schema>) => {
+  const onSubmit = async (data: z.infer<typeof schema>) => {
     setIsDisabled(true)
+
+    const tokens = await getTokens(data.username, data.password)
+    if (tokens == null) {
+      showErrorToast()
+      setIsDisabled(false)
+      return
+    }
+
+    setLocaItem('tokens', tokens, true)
+    setLocaItem('user', data, true)
+    setConfig({
+      ...data,
+      ...tokens
+    })
+
+    showSuccessToast()
+
     router.push('/dashboard')
-    setIsDisabled(false)
   }
+
+  const showErrorToast = () => {
+    toast({
+      variant: 'destructive',
+      title: 'Error al iniciar sesión',
+      description: 'No se ha podido iniciar sesión, revisa tus credenciales e inténtalo de nuevo',
+    })
+  }
+
+  const showSuccessToast = () => {
+    toast({
+      title: 'Inicio de sesión exitoso',
+      description: 'Has iniciado sesión correctamente'
+    })
+  }
+
+  useEffect(() => {
+    const user = getLocalItem('user', true)
+    if (user != null) {
+      form.setValue('username', user.username)
+      form.setValue('password', user.password)
+    }
+
+    const setFromConfig = async () => {
+      const config = await getConfig()
+
+      if (config != null) {
+        form.setValue('username', config.username)
+        form.setValue('password', config.password)
+      }
+    }
+
+    setFromConfig()
+  }, [])
 
   return (
     <Card
@@ -113,7 +167,7 @@ export default function AuthLogin () {
                   />
                 )
               }
-              Submit
+              Iniciar sesión
             </Button>
           </form>
         </Form>

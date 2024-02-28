@@ -12,6 +12,7 @@ const inter = Inter({
 export default function RootLayout ({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html
+      suppressHydrationWarning
       lang='en'
     >
       <body
