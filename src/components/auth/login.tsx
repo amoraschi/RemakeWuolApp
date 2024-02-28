@@ -19,8 +19,7 @@ import { Input } from '@/components/ui/input'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { getTokens } from '@/lib/auth'
 import { useToast } from '@/components/ui/use-toast'
-import { ToastAction } from '@/components/ui/toast'
-import { getConfig, getLocalItem, setConfig, setLocaItem } from '@/lib/storage'
+import { getConfig, getLocalItem, setConfig, setLocalItem } from '@/lib/storage'
 
 const schema = z.object({
   username: z.string().email('Correo electrónico inválido'),
@@ -53,8 +52,8 @@ export default function AuthLogin () {
       return
     }
 
-    setLocaItem('tokens', tokens, true)
-    setLocaItem('user', data, true)
+    setLocalItem('tokens', tokens, true)
+    setLocalItem('user', data, true)
     setConfig({
       ...data,
       ...tokens

@@ -1,7 +1,7 @@
 import { Config } from '@/types/Shared'
 import { BaseDirectory, exists, readTextFile, writeTextFile } from '@tauri-apps/api/fs'
 
-export function setLocaItem (key: string, value: any, stringify: boolean = false): void {
+export function setLocalItem (key: string, value: any, stringify: boolean = false): void {
   if (stringify) {
     localStorage.setItem(key, JSON.stringify(value))
     return
