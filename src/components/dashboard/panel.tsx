@@ -46,7 +46,7 @@ export default function DashboardPanel () {
               alt='Universidad'
               width={100}
               height={100}
-              className='w-full h-1/3 object-cover'
+              className='w-full h-1/3 object-cover rounded-bl-lg'
             />
             <div
               className='flex flex-row m-2'
