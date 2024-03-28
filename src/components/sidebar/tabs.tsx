@@ -1,7 +1,9 @@
 import Link from 'next/link'
-import { File, Gift, GraduationCap, Home, UserRound, UsersRound } from 'lucide-react'
+import { File, Gift, GraduationCap, Home, PanelLeftOpen, UsersRound } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import SidebarProfile from '@/components/sidebar/profile'
+
+import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from '@/components/ui/sheet'
 
 const tabs = [
   {
@@ -33,29 +35,47 @@ const tabs = [
 
 export default function SidebarTabs () {
   return (
-    <nav
-      className='flex flex-col w-1/6 h-screen'
-    >
-      <ul>
-        {
-          tabs.map((tab, index) => (
-            <Button
-              key={index}
-              variant='ghost'
-              className='w-full justify-start rounded-none py-7'
-              asChild
-            >
-              <Link
-                href={tab.path}
+    <Sheet>
+      <SheetTrigger
+        asChild
+      >
+        <Button
+          variant='outline'
+          className='fixed bottom-4 left-4 p-2'
+        >
+          <PanelLeftOpen
+            className='h-6 w-6'
+          />
+        </Button>
+      </SheetTrigger>
+      <SheetContent
+        side='left'
+      >
+        <SheetHeader>
+          <SheetTitle>
+            Menú
+          </SheetTitle>
+        </SheetHeader>
+        <ul>
+          {
+            tabs.map((tab, index) => (
+              <Button
+                key={index}
+                variant='ghost'
+                className='w-full justify-start rounded-none py-7'
+                asChild
               >
-                {tab.icon}
-                {tab.name}
-              </Link>
-            </Button>
-          ))
-        }
-      </ul>
-      <SidebarProfile />
-    </nav>
+                <Link
+                  href={tab.path}
+                >
+                  {tab.icon}
+                  {tab.name}
+                </Link>
+              </Button>
+            ))
+          }
+        </ul>
+      </SheetContent>
+    </Sheet>
   )
 }

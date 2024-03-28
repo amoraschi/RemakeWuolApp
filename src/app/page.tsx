@@ -7,32 +7,30 @@ import { useEffect, useState } from 'react'
 
 export default function Home () {
   const router = useRouter()
-  const [hasMounted, setHasMounted] = useState(false)
+  const [isStarting, setIsStarting] = useState(false)
 
   const onClick = () => {
-  }
-
-  useEffect(() => {
-    setHasMounted(true)
+    setIsStarting(true)
     router.push('/login')
-  }, [])
+  }
 
   return (
     <main
       className='grid place-items-center h-screen w-screen'
     >
-      {
-        !hasMounted && (
-          <Button
-            disabled
-            onClick={onClick}
-          >
+      <Button
+        disabled={isStarting}
+        onClick={onClick}
+      >
+        {
+          isStarting && (
             <Loader2
               className='mr-2 h-4 w-4 animate-spin'
-            /> Cargando
-          </Button>
-        )
-      }
+            />
+          )
+        }
+        Entrar
+      </Button>
     </main>
   )
 }

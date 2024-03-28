@@ -36,7 +36,7 @@ export default function DashboardPanel () {
 
   return (
     <div
-      className='h-full w-full'
+      className='h-screen w-screen'
     >
       {
         me != null ? (
@@ -46,10 +46,10 @@ export default function DashboardPanel () {
               alt='Universidad'
               width={100}
               height={100}
-              className='w-full h-1/3 object-cover rounded-bl-lg'
+              className='w-full h-1/3 object-cover p-2'
             />
             <div
-              className='flex flex-row m-2'
+              className='flex flex-row px-4 py-2'
             >
               <div>
                 <span
