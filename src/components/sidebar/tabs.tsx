@@ -1,5 +1,5 @@
 import Link from 'next/link'
-import { File, Gift, GraduationCap, Home, PanelLeftOpen, UsersRound } from 'lucide-react'
+import { ChevronRight, File, Gift, GraduationCap, Home, PanelLeftOpen, UsersRound } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import SidebarProfile from '@/components/sidebar/profile'
 
@@ -51,18 +51,15 @@ export default function SidebarTabs () {
       <SheetContent
         side='left'
       >
-        <SheetHeader>
-          <SheetTitle>
-            Menú
-          </SheetTitle>
-        </SheetHeader>
-        <ul>
+        <ul
+          className='mt-4'
+        >
           {
             tabs.map((tab, index) => (
               <Button
                 key={index}
                 variant='ghost'
-                className='w-full justify-start rounded-none py-7'
+                className='w-full justify-start rounded-none py-7 text-lg'
                 asChild
               >
                 <Link
@@ -70,6 +67,9 @@ export default function SidebarTabs () {
                 >
                   {tab.icon}
                   {tab.name}
+                  <ChevronRight
+                    className='ml-auto h-5 w-5'
+                  />
                 </Link>
               </Button>
             ))
