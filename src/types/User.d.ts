@@ -1,4 +1,4 @@
-// import { Pagination, PaginationObject } from '@/types/Common'
+import { Segmentation } from '@/types/Shared'
 import { DefaultCommunity } from '@/types/Community'
 // import { FileData } from '@/types/Files'
 
@@ -14,8 +14,8 @@ export interface User {
   avatarUrl: string
   fallbackAvatarUrl: string
   partnerType: number
-  money: number
-  accumulated: number
+  money?: number
+  accumulated?: number
   displayMoney: boolean
   isTeacher: boolean
   role: number
@@ -43,6 +43,7 @@ export interface User {
   phoneArea: string | null
   hasAgreedToTc: boolean
   subscriptionTier: null
+  verifiedSubscriptionTier?: null
   subscriptionId: null
   downloadWithCoinsByDefault: boolean
   b_idx: number
@@ -58,6 +59,14 @@ export interface UserStats {
   numFolloweds: number
   numFollowers: number
   numPaidDownloads: number
+}
+
+export interface UserRank {
+  value: number
+  rank: number
+  userId: number
+  segmentation: Segmentation
+  user: User
 }
 
 // interface UserBookmarks {

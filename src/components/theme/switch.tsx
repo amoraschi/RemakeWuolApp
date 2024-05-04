@@ -22,6 +22,7 @@ export default function ThemeSwitch () {
         hasMounted && theme === 'light' ? (
           <Button
             variant='outline'
+            className='px-2 py-1'
             onClick={() => setTheme('dark')}
           >
             <Moon
@@ -31,6 +32,7 @@ export default function ThemeSwitch () {
         ) : (
           <Button
             variant='outline'
+            className='px-2 py-1'
             onClick={() => setTheme('light')}
           >
             <Sun

@@ -1,10 +1,11 @@
 import { useEffect, useState } from 'react'
 import { fetchRanking } from '@/lib/api'
 import { getLocalItem, setLocalItem } from '@/lib/storage'
-import { User } from '@/types/User'
+import { UserRank } from '@/types/User'
+import Ranker from './ranker'
 
 export default function Ranking () {
-  const [ranking, setRanking] = useState<User[]>([])
+  const [ranking, setRanking] = useState<UserRank[]>([])
 
   useEffect(() => {
     const storedMe = getLocalItem('me', true)
@@ -37,9 +38,22 @@ export default function Ranking () {
   }, [])
   
   return (
-    <div>
-      <ul>
-      </ul>
+    <div
+      className='flex flex-col w-fit gap-2 border-[1px] p-4 rounded-md'
+    >
+      <span
+        className='font-semibold'
+      >
+        RANKING
+      </span>
+      {
+        ranking.map((user, index) => (
+          <Ranker
+            key={index}
+            user={user}
+          />
+        ))
+      }
     </div>
   )
 }
