@@ -74,7 +74,7 @@ export default function Dashboard () {
               />
             </div>
             <div
-              className='flex gap-2'
+              className='flex justify-center gap-2'
             >
               <Ranking />
               <Posts />

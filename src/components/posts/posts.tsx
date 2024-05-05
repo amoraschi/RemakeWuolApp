@@ -39,7 +39,7 @@ export default function Posts () {
 
   return (
     <div
-      className='flex flex-col flex-grow col-span-2 gap-2 border-[1px] p-4 rounded-md'
+      className='flex flex-col w-1/2 gap-2 border-[1px] p-4 rounded-md'
     >
       <span
         className='font-semibold'
