@@ -1,4 +1,5 @@
-import { Segmentations } from '@/types/Shared'
+import { Segmentation, Segmentations } from '@/types/Shared'
+import { User } from '@/types/User'
 
 export interface DefaultCommunity {
   userId: number
@@ -81,4 +82,28 @@ export interface Subject {
   link: string
   slug: string
   verified: boolean
+}
+
+export interface CommunityPost {
+  id: string
+  entityId: number
+  entityType: string
+  entitySubtype: string
+  isAnonymous: boolean
+  description: string
+  ownerId: number
+  createdAt: Date
+  contentUrl: string
+  attachedFileUrl: null
+  stats: CommunityPostStats
+  segmentation: Segmentation
+  profile: User
+  subject?: Subject
+  title?: string
+}
+
+export interface CommunityPostStats {
+  numComments: number
+  numLikes: number
+  numDislikes: number
 }

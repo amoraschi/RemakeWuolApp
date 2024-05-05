@@ -41,3 +41,24 @@ export async function fetchRanking (communityId: string, signal?: AbortSignal): 
 
   return response.json()
 }
+
+export async function fetchPosts (communityId: string, signal?: AbortSignal): Promise<any | null> {
+  const storedTokens = getLocalItem('tokens', true)
+  if (storedTokens == null) {
+    return null
+  }
+
+  const parameters = 'filter[entityType][0]=social&populate[0]=profile&populate[1]=subject&pagination[size]=6&pagination[offset]=0'
+  const response = await fetch(`https://api.wuolah.com/v2/search/communities/${communityId}/artifacts?${parameters}`, {
+    signal,
+    headers: {
+      Authorization: `Bearer ${storedTokens.accessToken}`
+    }
+  })
+
+  if (!response.ok) {
+    return null
+  }
+
+  return response.json()
+}

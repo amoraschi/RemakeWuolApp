@@ -1,6 +1,6 @@
 import { Inter } from 'next/font/google'
-import ThemeProvider from '@/components/theme-provider'
-import ThemeSwitch from '@/components/theme/switch'
+import ThemeSwitch, { ThemeProvider } from '@/components/theme-provider'
+import { Toaster } from '@/components/ui/toaster'
 import { cn } from '@/lib/utils'
 import './globals.css'
 
@@ -28,6 +28,7 @@ export default function RootLayout ({ children }: Readonly<{ children: React.Rea
           disableTransitionOnChange
         >
           {children}
+          <Toaster />
           <ThemeSwitch />
         </ThemeProvider>
       </body>

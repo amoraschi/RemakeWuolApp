@@ -33,7 +33,7 @@ export default function SidebarProfile () {
     fetch()
 
     return () => {
-      abortController.abort()
+      abortController.abort('Component unmounted')
     }
   }, [])
 

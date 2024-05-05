@@ -33,13 +33,13 @@ export default function Ranking () {
     fetch()
 
     return () => {
-      abortController.abort()
+      abortController.abort('Component unmounted')
     }
   }, [])
   
   return (
     <div
-      className='flex flex-col w-fit gap-2 border-[1px] p-4 rounded-md'
+      className='flex flex-col w-fit h-fit gap-2 border-[1px] p-4 rounded-md'
     >
       <span
         className='font-semibold'

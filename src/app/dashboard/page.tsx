@@ -7,8 +7,9 @@ import { User } from '@/types/User'
 import { MouseEvent, useEffect, useState } from 'react'
 import { Link, Loader2 } from 'lucide-react'
 import Ranking from '@/components/users/ranking'
+import Posts from '@/components/posts/posts'
 
-export default function DashboardPanel () {
+export default function Dashboard () {
   const [me, setMe] = useState<User | null>(null)
 
   useEffect(() => {
@@ -31,7 +32,7 @@ export default function DashboardPanel () {
     fetch()
 
     return () => {
-      abortController.abort()
+      abortController.abort('Component unmounted')
     }
   }, [])
 
@@ -72,7 +73,12 @@ export default function DashboardPanel () {
                 onClick={handleLinkClick}
               />
             </div>
-            <Ranking />
+            <div
+              className='flex gap-2'
+            >
+              <Ranking />
+              <Posts />
+            </div>
           </div>
         ) : (
           <span
