@@ -1,47 +1,62 @@
 import { DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle } from '@/components/ui/dialog'
-import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
-import { CommunityPost } from '@/types/Community'
+import PostAvatar from '@/components/posts/post-avatar'
+import PostDialogStats from '@/components/posts/post-dialog-stats'
 
 interface PostDialogProps {
-  post: CommunityPost
+  hasTitle: boolean
+  title: string | undefined
+  hasSubject: boolean
+  subject: string | undefined
+  description: string
+  nickname: string
+  avatarUrl: string
+  numLikes: number
+  numComments: number
 }
 
-export default function PostDialog ({ post }: PostDialogProps) {
+export default function PostDialog ({
+  hasTitle,
+  title,
+  hasSubject,
+  subject,
+  description,
+  nickname,
+  avatarUrl,
+  numLikes,
+  numComments
+}: PostDialogProps) {
   return (
     <DialogContent>
       <DialogHeader>
-        <DialogTitle>
-          {post.title}
-        </DialogTitle>
         {
-          post.subject != null && (
+          hasTitle && (
+            <DialogTitle>
+              {title}
+            </DialogTitle>
+          )
+        }
+        {
+          hasSubject && (
             <DialogDescription>
-              {post.subject.name}
+              {subject}
             </DialogDescription>
           )
         }
       </DialogHeader>
-      {post.description}
+      <span>
+        {description}
+      </span>
       <DialogFooter
         className='items-center'
       >
-        <span
-          className='text-xs font-semibold'
-        >
-          {post.profile.nickname}
-        </span>
-        <Avatar
-          className='w-5 h-5 border-2'
-        >
-          <AvatarImage
-            src={post.profile.avatarUrl}
-          />
-          <AvatarFallback
-            className='text-xs font-semibold'
-          >
-            {post.profile.nickname.slice(0, 2)}
-          </AvatarFallback>
-        </Avatar>
+        <PostDialogStats
+          numLikes={numLikes}
+          numComments={numComments}
+        />
+        <PostAvatar
+          avatarUrl={avatarUrl}
+          nickname={nickname}
+        />
       </DialogFooter>
     </DialogContent>
   )

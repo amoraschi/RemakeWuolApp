@@ -9,21 +9,14 @@ export default function Posts () {
 
   useEffect(() => {
     const storedMe = getLocalItem('me', true)
-    const storedPosts = getLocalItem('posts', true)
 
     if (storedMe == null) {
-      return
-    }
-
-    if (storedPosts != null) {
-      setPosts(storedPosts)
       return
     }
 
     const abortController = new AbortController()
     const fetch = async () => {
       const fetchedPosts = await fetchPosts(storedMe.defaultCommunityId, abortController.signal)
-      console.log(fetchedPosts.items)
       if (fetchedPosts != null) {
         setLocalItem('posts', fetchedPosts.items, true)
         setPosts(fetchedPosts.items)
@@ -50,7 +43,16 @@ export default function Posts () {
         posts.map((post, index) => (
           <Post
             key={index}
-            post={post}
+            entitySubtype={post.entitySubtype}
+            hasTitle={post.title != null}
+            title={post.title}
+            hasSubject={post.subject != null}
+            subject={post.subject?.name}
+            description={post.description}
+            nickname={post.profile.nickname}
+            avatarUrl={post.profile.avatarUrl}
+            numLikes={post.stats.numLikes}
+            numComments={post.stats.numComments}
           />
         ))
       }

@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react'
 import { fetchRanking } from '@/lib/api'
 import { getLocalItem, setLocalItem } from '@/lib/storage'
 import { UserRank } from '@/types/User'
-import Ranker from './ranker'
+import RankingUser from '@/components/users/ranking-user'
 
 export default function Ranking () {
   const [ranking, setRanking] = useState<UserRank[]>([])
@@ -48,9 +48,14 @@ export default function Ranking () {
       </span>
       {
         ranking.map((user, index) => (
-          <Ranker
+          <RankingUser
             key={index}
-            user={user}
+            rank={user.rank}
+            avatarUrl={user.user.avatarUrl}
+            nickname={user.user.nickname}
+            displayMoney={user.user.displayMoney}
+            totalMoney={user.user.totalMoney}
+            value={user.value}
           />
         ))
       }
