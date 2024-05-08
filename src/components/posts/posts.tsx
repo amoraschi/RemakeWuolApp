@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import { fetchPosts } from '@/lib/api'
-import { getLocalItem, setLocalItem } from '@/lib/storage'
+import { getLocalItem } from '@/lib/storage'
 import { CommunityPost } from '@/types/Community'
 import Post from '@/components/posts/post'
 
@@ -18,7 +18,6 @@ export default function Posts () {
     const fetch = async () => {
       const fetchedPosts = await fetchPosts(storedMe.defaultCommunityId, abortController.signal)
       if (fetchedPosts != null) {
-        setLocalItem('posts', fetchedPosts.items, true)
         setPosts(fetchedPosts.items)
       }
     }

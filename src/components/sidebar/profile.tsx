@@ -7,7 +7,6 @@ import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover
 import { useEffect, useState } from 'react'
 import { User } from '@/types/User'
 import { getLocalItem, setLocalItem } from '@/lib/storage'
-import { Skeleton } from '@/components/ui/skeleton'
 import { fetchMe } from '@/lib/api'
 
 export default function SidebarProfile () {
@@ -48,7 +47,7 @@ export default function SidebarProfile () {
           className='grid place-items-center w-fit'
         >
           {
-            me != null ? (
+            me != null && (
               <>
                 <AvatarImage
                   src={me.avatarUrl}
@@ -65,10 +64,6 @@ export default function SidebarProfile () {
                   />
                 </AvatarFallback>
               </>
-            ) : (
-              <Skeleton
-                className='h-7 w-7 rounded-full'
-              />
             )
           }
         </Avatar>
@@ -76,16 +71,12 @@ export default function SidebarProfile () {
           className='flex flex-col w-full overflow-hidden'
         >
           {
-            me != null ? (
+            me != null && (
               <span
                 className='text-sm font-semibold pt-1'
               >
                 {me.nickname}
               </span>
-            ) : (
-              <Skeleton
-                className='w-full h-7'
-              />
             )
           }
           <Popover>
