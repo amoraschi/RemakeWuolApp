@@ -1,8 +1,8 @@
 import Link from 'next/link'
 import { ChevronRight, File, Gift, GraduationCap, Home, PanelLeftOpen, UsersRound } from 'lucide-react'
 import { Button } from '@/components/ui/button'
-import SidebarProfile from '@/components/sidebar/profile'
 import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet'
+// import SidebarProfile from '@/components/sidebar/profile'
 
 const tabs = [
   {
@@ -74,7 +74,7 @@ export default function SidebarTabs () {
             ))
           }
         </ul>
-        <SidebarProfile />
+        {/* <SidebarProfile /> */}
       </SheetContent>
     </Sheet>
   )

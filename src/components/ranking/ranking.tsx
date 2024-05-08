@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react'
 import { fetchRanking } from '@/lib/api'
 import { getLocalItem, setLocalItem } from '@/lib/storage'
 import { UserRank } from '@/types/User'
-import RankingUser from '@/components/users/ranking-user'
+import RankingUser from '@/components/ranking/ranking-user'
 
 export default function Ranking () {
   const [ranking, setRanking] = useState<UserRank[]>([])

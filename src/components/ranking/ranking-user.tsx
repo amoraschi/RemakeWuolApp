@@ -1,6 +1,6 @@
 import { open } from '@tauri-apps/api/shell'
-import RankingUserDescription from '@/components/users/ranking-user-description'
-import RankingUserAvatar from '@/components/users/ranking-user-avatar'
+import RankingUserDescription from '@/components/ranking/ranking-user-description'
+import RankingUserAvatar from '@/components/ranking/ranking-user-avatar'
 
 interface RankingUserProps {
   rank: number

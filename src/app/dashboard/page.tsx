@@ -6,7 +6,7 @@ import { getLocalItem, setLocalItem } from '@/lib/storage'
 import { User } from '@/types/User'
 import { MouseEvent, useEffect, useState } from 'react'
 import { Link, Loader2 } from 'lucide-react'
-import Ranking from '@/components/users/ranking'
+import Ranking from '@/components/ranking/ranking'
 import Posts from '@/components/posts/posts'
 
 export default function Dashboard () {
@@ -43,13 +43,11 @@ export default function Dashboard () {
 
   return (
     <main
-      className='h-screen w-screen'
+      className='h-full w-full p-4'
     >
       {
         me != null ? (
-          <div
-            className='p-4'
-          >
+          <>
 
             <div
               className='flex flex-row mb-4'
@@ -79,10 +77,10 @@ export default function Dashboard () {
               <Ranking />
               <Posts />
             </div>
-          </div>
+          </>
         ) : (
           <span
-            className='flex flex-row items-center m-2'
+            className='flex flex-row items-center'
           >
             <Loader2
               className='mr-2 h-4 w-4 animate-spin'
