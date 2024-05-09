@@ -8,10 +8,10 @@ export default function Ranking () {
   const [ranking, setRanking] = useState<UserRank[]>([])
 
   useEffect(() => {
-    const storedMe = getLocalItem('me', true)
+    const storedUserInfo = getLocalItem('userInfo', true)
     const storedRanking = getLocalItem('ranking', true)
 
-    if (storedMe == null) {
+    if (storedUserInfo == null) {
       return
     }
 
@@ -22,7 +22,7 @@ export default function Ranking () {
 
     const abortController = new AbortController()
     const fetch = async () => {
-      const fetchedRanking = await fetchRanking(storedMe.defaultCommunityId, abortController.signal)
+      const fetchedRanking = await fetchRanking(storedUserInfo.defaultCommunityId, abortController.signal)
       console.log(fetchedRanking.items)
       if (fetchedRanking != null) {
         setLocalItem('ranking', fetchedRanking.items, true)

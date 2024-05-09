@@ -10,22 +10,22 @@ import Ranking from '@/components/ranking/ranking'
 import Posts from '@/components/posts/posts'
 
 export default function Dashboard () {
-  const [me, setMe] = useState<User | null>(null)
+  const [userInfo, setUserInfo] = useState<User | null>(null)
 
   useEffect(() => {
-    const storedMe = getLocalItem('me', true)
+    const storedUserInfo = getLocalItem('userInfo', true)
 
-    if (storedMe != null) {
-      setMe(storedMe)
+    if (storedUserInfo != null) {
+      setUserInfo(storedUserInfo)
       return
     }
 
     const abortController = new AbortController()
     const fetch = async () => {
-      const fetchedMe = await fetchMe(abortController.signal)
-      if (fetchedMe != null) {
-        setLocalItem('me', fetchedMe, true)
-        setMe(fetchedMe)
+      const fetchedUserInfo = await fetchMe(abortController.signal)
+      if (fetchedUserInfo != null) {
+        setLocalItem('userInfo', fetchedUserInfo, true)
+        setUserInfo(fetchedUserInfo)
       }
     }
 
@@ -38,7 +38,7 @@ export default function Dashboard () {
 
   const handleLinkClick = (e: MouseEvent) => {
     e.preventDefault()
-    open(`https://wuolah.com/${me?.defaultCommunity?.community?.slug ?? ''}`)
+    open(`https://wuolah.com/${userInfo?.defaultCommunity?.community?.slug ?? ''}`)
   }
 
   return (
@@ -46,7 +46,7 @@ export default function Dashboard () {
       className='h-full w-full p-4'
     >
       {
-        me != null ? (
+        userInfo != null ? (
           <>
 
             <div
@@ -56,13 +56,13 @@ export default function Dashboard () {
                 <span
                   className='text-2xl font-semibold'
                 >
-                  {me.defaultCommunity.community.segmentations.study.item?.name ?? 'Sin estudios'}
+                  {userInfo.defaultCommunity.community.segmentations.study.item?.name ?? 'Sin estudios'}
                 </span>
                 <br />
                 <span
                   className='text-md'
                 >
-                  {me.defaultCommunity.community.segmentations.center.item?.name ?? 'Sin centro'} - {me.defaultCommunity.community.segmentations.university.item?.name ?? 'Sin universidad'}
+                  {userInfo.defaultCommunity.community.segmentations.center.item?.name ?? 'Sin centro'} - {userInfo.defaultCommunity.community.segmentations.university.item?.name ?? 'Sin universidad'}
                 </span>
               </div>
               <Link

@@ -8,15 +8,15 @@ export default function Posts () {
   const [posts, setPosts] = useState<CommunityPost[]>([])
 
   useEffect(() => {
-    const storedMe = getLocalItem('me', true)
+    const storedUserInfo = getLocalItem('userInfo', true)
 
-    if (storedMe == null) {
+    if (storedUserInfo == null) {
       return
     }
 
     const abortController = new AbortController()
     const fetch = async () => {
-      const fetchedPosts = await fetchPosts(storedMe.defaultCommunityId, abortController.signal)
+      const fetchedPosts = await fetchPosts(storedUserInfo.defaultCommunityId, abortController.signal)
       if (fetchedPosts != null) {
         setPosts(fetchedPosts.items)
       }
