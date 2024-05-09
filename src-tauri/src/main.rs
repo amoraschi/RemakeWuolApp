@@ -16,20 +16,26 @@ async fn fetch_auth_tokens (
   password: String
 ) -> Result<serde_json::Value, String> {
   let client = reqwest::Client::new();
-  let json = serde_json::json!({
-    "username": username,
-    "password": password
-  });
-
   let response = client.post("https://api.wuolah.com/login")
-    .json(&json)
+    .body(
+      serde_json::json!({
+        "account": username,
+        "password": password
+      })
+      .to_string()
+    )
     .send()
     .await
     .map_err(|e| format!("Error sending request: {}", e))?;
 
   let status = response.status();
   if !status.is_success() {
-    return Err(format!("Error: {}", status));
+    let body = response
+      .text()
+      .await
+      .map_err(|e| format!("Error reading response: {}", e))?;
+
+    return Err(body);
   }
 
   let body = response
