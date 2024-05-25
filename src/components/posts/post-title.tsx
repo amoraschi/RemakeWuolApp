@@ -27,11 +27,16 @@ export default function PostTitle ({
   title
 }: PostTitleProps) {
   return (
-    <span
-      className='flex items-center gap-1 font-semibold text-sm'
+    <div
+      className='flex items-center gap-1 font-semibold text-sm truncate'
     >
-      {subTypes.find(i => i.name === entitySubtype)?.icon}
-      {entitySubtype.toUpperCase()}{hasTitle ? ` - ${title}` : ''}
-    </span>
+      <span>
+        {subTypes.find(i => i.name === entitySubtype)?.icon}
+
+      </span>
+      <span>
+        {entitySubtype.toUpperCase()}{hasTitle ? ` - ${title}` : ''}
+      </span>
+    </div>
   )
 }
