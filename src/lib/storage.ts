@@ -25,20 +25,6 @@ export function getLocalItem (key: string, parse: boolean = false): any | null {
 }
 
 export async function getConfig (): Promise<Config | null> {
-  // const existsFile = await exists('wuolapp.json', {
-  //   dir: BaseDirectory.LocalData
-  // })
-
-  // if (!existsFile) {
-  //   await writeTextFile('wuolapp.json', '{}', {
-  //     dir: BaseDirectory.LocalData
-  //   })
-  // }
-
-  // const config = await readTextFile('wuolapp.json', {
-  //   dir: BaseDirectory.LocalData
-  // })
-
   try {
     const config = await invoke<Config>('get_config')
     return config
@@ -48,12 +34,6 @@ export async function getConfig (): Promise<Config | null> {
 }
 
 export async function setConfig (config: Config): Promise<void> {
-  // console.log('Config:', 'Local')
-
-  // await writeTextFile('wuolapp.json', JSON.stringify(config), {
-  //   dir: BaseDirectory.LocalData
-  // })
-
   try {
     await invoke('set_config', { config })
   } catch (e) {
