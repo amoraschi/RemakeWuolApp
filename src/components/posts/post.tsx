@@ -3,6 +3,7 @@ import PostDialog from '@/components/posts/post-dialog'
 import PostAvatar from '@/components/posts/post-avatar'
 import PostTitle from '@/components/posts/post-title'
 import PostDescription from '@/components/posts/post-description'
+import PostDate from '@/components/posts/post-date'
 
 interface PostProps {
   entitySubtype: string
@@ -15,6 +16,7 @@ interface PostProps {
   avatarUrl: string
   numLikes: number
   numComments: number
+  createdAt: string
 }
 
 export default function Post ({
@@ -27,7 +29,8 @@ export default function Post ({
   nickname,
   avatarUrl,
   numLikes,
-  numComments
+  numComments,
+  createdAt
 }: PostProps) {
   return (
     <Dialog>
@@ -37,11 +40,18 @@ export default function Post ({
         <div
           className='flex flex-col gap-2 p-2 rounded-md cursor-pointer transition hover:bg-gray-100 dark:hover:bg-gray-800'
         >
-          <PostTitle
-            entitySubtype={entitySubtype}
-            hasTitle={hasTitle}
-            title={title}
-          />
+          <div
+            className='flex justify-between'
+          >
+            <PostTitle
+              entitySubtype={entitySubtype}
+              hasTitle={hasTitle}
+              title={title}
+            />
+            <PostDate
+              createdAt={createdAt}
+            />
+          </div>
           <div
             className='flex flex-row gap-1 text-xs'
           >

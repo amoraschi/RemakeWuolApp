@@ -52,6 +52,7 @@ export default function Posts () {
             avatarUrl={post.profile.avatarUrl}
             numLikes={post.stats.numLikes}
             numComments={post.stats.numComments}
+            createdAt={post.createdAt}
           />
         ))
       }

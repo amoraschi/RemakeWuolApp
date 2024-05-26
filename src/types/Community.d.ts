@@ -32,7 +32,7 @@ export interface Community {
   enrolledStudents: number
   enrolledStudentsPrecision: string
   isActiveByMarketShare: boolean
-  createdAt: number
+  createdAt: string
   updatedAt: number
   lastUpdatedAt: null
   deletedAt: number
@@ -92,7 +92,7 @@ export interface CommunityPost {
   isAnonymous: boolean
   description: string
   ownerId: number
-  createdAt: Date
+  createdAt: string
   contentUrl: string
   attachedFileUrl: null
   stats: CommunityPostStats
