@@ -1,5 +1,4 @@
 import { Config } from '@/types/Shared'
-// import { BaseDirectory, exists, readTextFile, writeTextFile } from '@tauri-apps/api/fs'
 import { invoke } from '@tauri-apps/api/tauri'
 
 export function setLocalItem (key: string, value: any, stringify: boolean = false): void {
@@ -37,6 +36,6 @@ export async function setConfig (config: Config): Promise<void> {
   try {
     await invoke('set_config', { config })
   } catch (e) {
-    // console.error(e)
+    console.log(e)
   }
 }

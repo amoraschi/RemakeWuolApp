@@ -8,13 +8,3 @@ export async function getTokens (username: string, password: string): Promise<Lo
     return null
   }
 }
-
-// export async function isTokenValid (tokens: LoginReponse): Promise<boolean> {
-//   // return await invoke('is_token_valid', { tokens })
-//   try {
-//     const result = await invoke<{ expired: boolean }>('is_token_valid', { tokens })
-//     return result.expired
-//   } catch (e) {
-//     return false
-//   }
-// }

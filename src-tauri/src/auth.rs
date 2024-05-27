@@ -45,28 +45,3 @@ pub async fn fetch_auth_tokens (
 
   Ok(json)
 }
-
-// #[tauri::command]
-// pub fn is_token_valid (
-//   tokens: LoginResponse
-// ) -> Result<serde_json::Value, serde_json::Value> {
-//   let expires = DateTime::parse_from_rfc3339(&tokens.expires)
-//     .expect("Error parsing date")
-//     .timestamp();
-
-//   let now = Utc::now().timestamp();
-
-//   if expires < now {
-//     Ok(
-//       serde_json::json!({
-//         "expired": false
-//       })
-//     )
-//   } else {
-//     Err(
-//       serde_json::json!({
-//         "expired": true
-//       })
-//     )
-//   }
-// }
