@@ -53,6 +53,7 @@ export default function Posts () {
             numLikes={post.stats.numLikes}
             numComments={post.stats.numComments}
             createdAt={post.createdAt}
+            entityId={post.entityId}
           />
         ))
       }

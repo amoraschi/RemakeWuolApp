@@ -1,6 +1,7 @@
 import { DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle } from '@/components/ui/dialog'
 import PostAvatar from '@/components/posts/post-avatar'
 import PostDialogStats from '@/components/posts/post-dialog-stats'
+import PostCommentsDialog from './post-comments-dialog'
 
 interface PostDialogProps {
   hasTitle: boolean
@@ -12,6 +13,7 @@ interface PostDialogProps {
   avatarUrl: string
   numLikes: number
   numComments: number
+  entityId: number
 }
 
 export default function PostDialog ({
@@ -23,7 +25,8 @@ export default function PostDialog ({
   nickname,
   avatarUrl,
   numLikes,
-  numComments
+  numComments,
+  entityId
 }: PostDialogProps) {
   return (
     <DialogContent>
@@ -52,6 +55,7 @@ export default function PostDialog ({
         <PostDialogStats
           numLikes={numLikes}
           numComments={numComments}
+          entityId={entityId}
         />
         <PostAvatar
           avatarUrl={avatarUrl}

@@ -16,7 +16,7 @@ export default function PostAvatar ({
 
   return (
     <Avatar
-      className='w-4 h-4 border-2 cursor-pointer hover:scale-110 transition'
+      className='w-5 h-5 border-2 cursor-pointer hover:scale-110 transition'
       onClick={onProfileClick}
     >
       <AvatarImage

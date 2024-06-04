@@ -62,3 +62,24 @@ export async function fetchPosts (communityId: string, signal?: AbortSignal): Pr
 
   return response.json()
 }
+
+export async function fetchPostComments (postId: string, signal?: AbortSignal): Promise<any | null> {
+  const storedTokens = getLocalItem('tokens', true)
+  if (storedTokens == null) {
+    return null
+  }
+
+  const parameters = 'sort=-created&populate[0]=author&pagination[page]=0&pagination[pageSize]=100'
+  const response = await fetch(`https://api.wuolah.com/v2/socials/${postId}/comments?${parameters}`, {
+    signal,
+    headers: {
+      Authorization: `Bearer ${storedTokens.accessToken}`
+    }
+  })
+
+  if (!response.ok) {
+    return null
+  }
+
+  return response.json()
+}

@@ -5,7 +5,6 @@
 
 mod auth;
 mod file;
-mod storage;
 
 // type SharedMap = Arc<Mutex<HashMap<String, String>>>;
 

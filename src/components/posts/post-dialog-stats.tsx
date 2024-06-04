@@ -1,13 +1,16 @@
-import { MessageCircle, ThumbsUp } from 'lucide-react'
+import { ThumbsUp } from 'lucide-react'
+import PostCommentsDialog from '@/components/posts/post-comments-dialog'
 
 interface PostDialogStatsProps {
   numLikes: number
   numComments: number
+  entityId: number
 }
 
 export default function PostDialogStats ({
   numLikes,
-  numComments
+  numComments,
+  entityId
 }: PostDialogStatsProps) {
   return (
     <div
@@ -17,8 +20,11 @@ export default function PostDialogStats ({
         className='w-4 h-4 mr-1'
       />
       {numLikes}
-      <MessageCircle
+      {/* <MessageCircle
         className='w-4 h-4 ml-4 mr-1'
+      /> */}
+      <PostCommentsDialog
+        entityId={entityId}
       />
       {numComments}
     </div>

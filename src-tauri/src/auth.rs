@@ -1,12 +1,3 @@
-// use chrono::{DateTime, Utc};
-
-// #[derive(serde::Deserialize)]
-// pub struct LoginResponse {
-//   access_token: String,
-//   refresh_token: String,
-//   expires: String
-// }
-
 #[tauri::command]
 pub async fn fetch_auth_tokens (
   username: String,

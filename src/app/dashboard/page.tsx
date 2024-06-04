@@ -8,6 +8,7 @@ import { MouseEvent, useEffect, useState } from 'react'
 import { Link, Loader2 } from 'lucide-react'
 import Ranking from '@/components/ranking/ranking'
 import Posts from '@/components/posts/posts'
+import Loader from '@/components/loader'
 
 export default function Dashboard () {
   const [userInfo, setUserInfo] = useState<User | null>(null)
@@ -78,13 +79,7 @@ export default function Dashboard () {
             </div>
           </>
         ) : (
-          <span
-            className='flex flex-row items-center'
-          >
-            <Loader2
-              className='mr-2 h-4 w-4 animate-spin'
-            /> Cargando datos
-          </span>
+          <Loader />
         )
       }
     </main>

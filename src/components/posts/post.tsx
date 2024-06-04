@@ -17,6 +17,7 @@ interface PostProps {
   numLikes: number
   numComments: number
   createdAt: string
+  entityId: number
 }
 
 export default function Post ({
@@ -30,7 +31,8 @@ export default function Post ({
   avatarUrl,
   numLikes,
   numComments,
-  createdAt
+  createdAt,
+  entityId
 }: PostProps) {
   return (
     <Dialog>
@@ -53,7 +55,7 @@ export default function Post ({
             />
           </div>
           <div
-            className='flex flex-row gap-1 text-xs'
+            className='flex flex-row gap-2 text-xs items-center'
           >
             <PostAvatar
               avatarUrl={avatarUrl}
@@ -76,6 +78,7 @@ export default function Post ({
         avatarUrl={avatarUrl}
         numLikes={numLikes}
         numComments={numComments}
+        entityId={entityId}
       />
     </Dialog>
   )
