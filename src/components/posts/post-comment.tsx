@@ -16,7 +16,7 @@ export default function PostComment ({
       className='flex flex-col text-sm'
     >
       <div
-        className='flex flex-row gap-2 items-center'
+        className='flex flex-row gap-2 mb-1 items-center'
       >
         <PostAvatar
           avatarUrl={avatarUrl}

@@ -55,7 +55,7 @@ export default function Post ({
             />
           </div>
           <div
-            className='flex flex-row gap-2 text-xs items-center'
+            className='flex flex-row gap-1 text-xs items-center'
           >
             <PostAvatar
               avatarUrl={avatarUrl}
@@ -63,7 +63,6 @@ export default function Post ({
             />
             <PostDescription
               description={description}
-              nickname={nickname}
             />
           </div>
         </div>
