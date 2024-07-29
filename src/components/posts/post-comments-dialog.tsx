@@ -39,6 +39,14 @@ export default function PostCommentsDialog ({
     }
   }, [])
 
+  if (comments.length === 0) {
+    return (
+      <MessageCircle
+        className='w-4 h-4 ml-4 mr-1 text-gray-500 text-sm'
+      />
+    )
+  }
+
   return (
     <Dialog>
       <DialogTrigger>

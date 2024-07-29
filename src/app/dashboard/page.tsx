@@ -66,8 +66,7 @@ export default function Dashboard () {
                 </span>
               </div>
               <Link
-                className='ml-auto w-5 h-5 cursor-pointer'
-                href='/settings'
+                className='ml-auto w-5 h-5 cursor-pointer hover:scale-110 transition'
                 onClick={handleLinkClick}
               />
             </div>
