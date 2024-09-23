@@ -83,3 +83,25 @@ export async function fetchPostComments (postId: string, signal?: AbortSignal): 
 
   return response.json()
 }
+
+export async function fetchCommunity (communityId: string, signal?: AbortSignal): Promise<any | null> {
+  const storedTokens = getLocalItem('tokens', true)
+
+  if (storedTokens == null) {
+    return null
+  }
+
+  const parameters = `populate[0]=subject&populate[1]=community&pagination[page]=0&pagination[pageSize]=9999`
+  const response = await fetch(`https://api.wuolah.com/v2/communities/${communityId}/subjects?${parameters}`, {
+    signal,
+    headers: {
+      Authorization: `Bearer ${storedTokens.accessToken}`
+    }
+  })
+
+  if (!response.ok) {
+    return null
+  }
+
+  return response.json()
+}
