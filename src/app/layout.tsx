@@ -1,7 +1,6 @@
 import { Inter } from 'next/font/google'
 import ThemeSwitch, { ThemeProvider } from '@/components/theme-provider'
 import { Toaster } from '@/components/ui/toaster'
-import { cn } from '@/lib/utils'
 import './globals.css'
 
 const inter = Inter({
@@ -16,10 +15,7 @@ export default function RootLayout ({ children }: Readonly<{ children: React.Rea
       lang='en'
     >
       <body
-        className={cn(
-          'min-h-screen bg-background font-sans antialiased',
-          inter.variable
-        )}
+        className={`min-h-screen bg-background font-sans antialiased ${inter.variable}`}
       >
         <ThemeProvider
           attribute='class'

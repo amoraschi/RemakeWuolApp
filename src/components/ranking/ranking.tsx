@@ -51,11 +51,7 @@ export default function Ranking () {
           <RankingUser
             key={index}
             rank={user.rank}
-            avatarUrl={user.user.avatarUrl}
-            nickname={user.user.nickname}
-            displayMoney={user.user.displayMoney}
-            totalMoney={user.user.totalMoney}
-            value={user.value}
+            user={user.user}
           />
         ))
       }

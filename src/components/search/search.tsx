@@ -3,8 +3,9 @@ import { ArrowRight, FolderInput } from 'lucide-react'
 import { fetchCommunity } from '@/lib/api'
 import { getLocalItem, setLocalItem } from '@/lib/storage'
 import { Input } from '@/components/ui/input'
-import { Button } from '@/components/ui/button'
+import { Button, buttonVariants } from '@/components/ui/button'
 import { Community } from '@/types/Community'
+import Link from 'next/link'
 
 export default function Search () {
   const [courses, setCourses] = useState<Community[]>([])
@@ -51,26 +52,29 @@ export default function Search () {
       <Input
         placeholder='Buscar documentos, asignaturas o profesores'
       />
-      <Button
-        className='flex items-center justify-between'
-        variant='outline'
+      <Link
+        href='/dashboard/subjects'
+        className={buttonVariants({
+          variant: 'outline',
+          className: 'flex items-center justify-between'
+        })}
       >
         <div
           className='flex justify-start gap-2'
         >
           <FolderInput
-            className='w-5 h-5'
+            className='w-5 h-5 text-gray-500'
+            strokeWidth={1.5}
           />
-          <span
-            className='font-semibold'
-          >
+          <span>
             {courses.length} ASIGNATURAS
           </span>
         </div>
         <ArrowRight
-          className='w-5 h-5'
+          className='w-5 h-5 text-gray-500'
+          strokeWidth={1.5}
         />
-      </Button>
+      </Link>
     </div>
   )
 }

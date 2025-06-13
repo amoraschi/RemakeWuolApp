@@ -10,7 +10,7 @@ export default function NotFound () {
 
   const onClick = () => {
     const user = getLocalItem('user')
-    if (user) {
+    if (user != null) {
       router.push('/dashboard')
     } else {
       router.push('/login')

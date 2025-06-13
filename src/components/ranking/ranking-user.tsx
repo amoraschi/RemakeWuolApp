@@ -1,26 +1,19 @@
 import { open } from '@tauri-apps/api/shell'
 import RankingUserDescription from '@/components/ranking/ranking-user-description'
 import RankingUserAvatar from '@/components/ranking/ranking-user-avatar'
+import { User } from '@/types/User'
 
 interface RankingUserProps {
   rank: number
-  avatarUrl: string
-  nickname: string
-  displayMoney: boolean
-  totalMoney: number | undefined
-  value: number
+  user: User
 }
 
 export default function RankingUser ({
   rank,
-  nickname,
-  avatarUrl,
-  displayMoney,
-  totalMoney,
-  value
+  user
 }: RankingUserProps) {
   const onProfileClick = () => {
-    open(`https://wuolah.com/profile/${nickname}`)
+    open(`https://wuolah.com/profile/${user.nickname}`)
   }
 
   return (
@@ -30,14 +23,10 @@ export default function RankingUser ({
     >
       <RankingUserAvatar
         rank={rank}
-        avatarUrl={avatarUrl}
-        nickname={nickname}
+        user={user}
       />
       <RankingUserDescription
-        nickname={nickname}
-        displayMoney={displayMoney}
-        totalMoney={totalMoney}
-        value={value}
+        user={user}
       />
     </div>
   )

@@ -43,7 +43,7 @@ export interface User {
   phoneArea: string | null
   hasAgreedToTc: boolean
   subscriptionTier: null
-  verifiedSubscriptionTier?: null
+  verifiedSubscriptionTier: string | null
   subscriptionId: null
   downloadWithCoinsByDefault: boolean
   b_idx: number

@@ -1,17 +1,13 @@
 import { formatNumber } from '@/lib/utils'
+import { User } from '@/types/User'
+import { Check } from 'lucide-react'
 
 interface RankingUserDescriptionProps {
-  nickname: string
-  displayMoney: boolean
-  totalMoney: number | undefined
-  value: number
+  user: User
 }
 
 export default function RankingUserDescription ({
-  nickname,
-  displayMoney,
-  totalMoney,
-  value
+  user
 }: RankingUserDescriptionProps) {
   return (
     <div
@@ -20,12 +16,12 @@ export default function RankingUserDescription ({
       <span
         className='text-xs font-semibold'
       >
-        {nickname}
+        {user.nickname}
       </span>
       <span
         className='text-xs'
       >
-        {displayMoney && `${totalMoney} € - `}{formatNumber(value)}
+        {user.displayMoney && `${user.totalMoney} € - `}{formatNumber(user.popularity)}
       </span>
     </div>
   )
