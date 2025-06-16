@@ -1,8 +1,9 @@
-import { getLocalItem } from '@/lib/storage'
 import { User } from '@/types/User'
+import { getConfig } from '@/lib/storage'
 
 export async function fetchMe (signal?: AbortSignal): Promise<User | null> {
-  const storedTokens = getLocalItem('tokens', true)
+  const storedTokens = await getConfig()
+
   if (storedTokens == null) {
     return null
   }
@@ -21,8 +22,9 @@ export async function fetchMe (signal?: AbortSignal): Promise<User | null> {
   return response.json()
 }
 
-export async function fetchRanking (communityId: string, signal?: AbortSignal): Promise<any | null> {
-  const storedTokens = getLocalItem('tokens', true)
+export async function fetchRanking (communityId: string | number, signal?: AbortSignal): Promise<any | null> {
+  const storedTokens = await getConfig()
+
   if (storedTokens == null) {
     return null
   }
@@ -43,7 +45,8 @@ export async function fetchRanking (communityId: string, signal?: AbortSignal): 
 }
 
 export async function fetchPosts (communityId: string, signal?: AbortSignal): Promise<any | null> {
-  const storedTokens = getLocalItem('tokens', true)
+  const storedTokens = await getConfig()
+
   if (storedTokens == null) {
     return null
   }
@@ -64,7 +67,8 @@ export async function fetchPosts (communityId: string, signal?: AbortSignal): Pr
 }
 
 export async function fetchPostComments (postId: string, signal?: AbortSignal): Promise<any | null> {
-  const storedTokens = getLocalItem('tokens', true)
+  const storedTokens = await getConfig()
+
   if (storedTokens == null) {
     return null
   }
@@ -84,8 +88,8 @@ export async function fetchPostComments (postId: string, signal?: AbortSignal): 
   return response.json()
 }
 
-export async function fetchCommunity (communityId: string, signal?: AbortSignal): Promise<any | null> {
-  const storedTokens = getLocalItem('tokens', true)
+export async function fetchSubjects (communityId: string | number, signal?: AbortSignal): Promise<any | null> {
+  const storedTokens = await getConfig()
 
   if (storedTokens == null) {
     return null

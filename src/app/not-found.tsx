@@ -1,22 +1,10 @@
 'use client'
 
-import { Button } from '@/components/ui/button'
+import { Button, buttonVariants } from '@/components/ui/button'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
-import { getLocalItem } from '@/lib/storage'
-import { useRouter } from 'next/navigation'
+import Link from 'next/link'
 
 export default function NotFound () {
-  const router = useRouter()
-
-  const onClick = () => {
-    const user = getLocalItem('user')
-    if (user != null) {
-      router.push('/dashboard')
-    } else {
-      router.push('/login')
-    }
-  }
-
   return (
     <main
       className='grid place-items-center h-screen w-screen'
@@ -31,11 +19,12 @@ export default function NotFound () {
           </CardDescription>
         </CardHeader>
         <CardContent>
-          <Button
-            onClick={onClick}
+          <Link
+            href='/'
+            className={buttonVariants()}
           >
             Volver al inicio
-          </Button>
+          </Link>
         </CardContent>
       </Card>
     </main>

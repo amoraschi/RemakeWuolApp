@@ -1,31 +1,23 @@
 import { useEffect, useState } from 'react'
 import { fetchRanking } from '@/lib/api'
-import { getLocalItem, setLocalItem } from '@/lib/storage'
 import { UserRank } from '@/types/User'
 import RankingUser from '@/components/ranking/ranking-user'
+import { useUserContext } from '@/app/dashboard/layout'
 
 export default function Ranking () {
+  const userInfo = useUserContext()
   const [ranking, setRanking] = useState<UserRank[]>([])
 
   useEffect(() => {
-    const storedUserInfo = getLocalItem('userInfo', true)
-    const storedRanking = getLocalItem('ranking', true)
-
-    if (storedUserInfo == null) {
-      return
-    }
-
-    if (storedRanking != null) {
-      setRanking(storedRanking)
+    if (userInfo == null) {
       return
     }
 
     const abortController = new AbortController()
     const fetch = async () => {
-      const fetchedRanking = await fetchRanking(storedUserInfo.defaultCommunityId, abortController.signal)
+      const fetchedRanking = await fetchRanking(userInfo.defaultCommunityId, abortController.signal)
       console.log(fetchedRanking.items)
       if (fetchedRanking != null) {
-        setLocalItem('ranking', fetchedRanking.items, true)
         setRanking(fetchedRanking.items)
       }
     }

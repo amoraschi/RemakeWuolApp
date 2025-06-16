@@ -1,41 +1,16 @@
 'use client'
 
 import { open } from '@tauri-apps/api/shell'
-import { fetchMe } from '@/lib/api'
-import { getLocalItem, setLocalItem } from '@/lib/storage'
-import { User } from '@/types/User'
-import { MouseEvent, useEffect, useState } from 'react'
+import { MouseEvent } from 'react'
 import { Link } from 'lucide-react'
 import Ranking from '@/components/ranking/ranking'
 import Loader from '@/components/loader'
 import Search from '@/components/search/search'
+import { useUserContext } from '@/app/dashboard/layout'
+import DashboardTitle from '@/components/dashboard/dashboard-title'
 
 export default function Dashboard () {
-  const [userInfo, setUserInfo] = useState<User | null>(null)
-
-  useEffect(() => {
-    const storedUserInfo = getLocalItem('userInfo', true)
-
-    if (storedUserInfo != null) {
-      setUserInfo(storedUserInfo)
-      return
-    }
-
-    const abortController = new AbortController()
-    const fetch = async () => {
-      const fetchedUserInfo = await fetchMe(abortController.signal)
-      if (fetchedUserInfo != null) {
-        setLocalItem('userInfo', fetchedUserInfo, true)
-        setUserInfo(fetchedUserInfo)
-      }
-    }
-
-    fetch()
-
-    return () => {
-      abortController.abort('Component unmounted')
-    }
-  }, [])
+  const userInfo = useUserContext()
 
   const handleLinkClick = (e: MouseEvent) => {
     e.preventDefault()
@@ -52,19 +27,9 @@ export default function Dashboard () {
             <div
               className='flex flex-row mb-4'
             >
-              <div>
-                <span
-                  className='text-2xl font-semibold'
-                >
-                  {userInfo.defaultCommunity.community.segmentations.study.item?.name ?? 'Sin estudios'}
-                </span>
-                <br />
-                <span
-                  className='text-md'
-                >
-                  {userInfo.defaultCommunity.community.segmentations.center.item?.name ?? 'Sin centro'} - {userInfo.defaultCommunity.community.segmentations.university.item?.name ?? 'Sin universidad'}
-                </span>
-              </div>
+              <DashboardTitle
+                userInfo={userInfo}
+              />
               <Link
                 className='ml-auto w-5 h-5 cursor-pointer hover:scale-110 transition'
                 onClick={handleLinkClick}

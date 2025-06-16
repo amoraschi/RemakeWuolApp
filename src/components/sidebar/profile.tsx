@@ -4,37 +4,10 @@ import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
 import { Button } from '@/components/ui/button'
 import { Card } from '@/components/ui/card'
 import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover'
-import { useEffect, useState } from 'react'
-import { User } from '@/types/User'
-import { getLocalItem, setLocalItem } from '@/lib/storage'
-import { fetchMe } from '@/lib/api'
+import { useUserContext } from '@/app/dashboard/layout'
 
 export default function SidebarProfile () {
-  const [userInfo, setUserInfo] = useState<User | null>(null)
-
-  useEffect(() => {
-    const storedUserInfo = getLocalItem('userInfo', true)
-
-    if (storedUserInfo != null) {
-      setUserInfo(storedUserInfo)
-      return
-    }
-
-    const abortController = new AbortController()
-    const fetch = async () => {
-      const fetchedstoredUserInfo = await fetchMe(abortController.signal)
-      if (fetchedstoredUserInfo != null) {
-        setLocalItem('userInfo', fetchedstoredUserInfo, true)
-        setUserInfo(fetchedstoredUserInfo)
-      }
-    }
-
-    fetch()
-
-    return () => {
-      abortController.abort('Component unmounted')
-    }
-  }, [])
+  const userInfo = useUserContext()
 
   return (
     <div

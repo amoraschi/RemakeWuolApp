@@ -19,7 +19,7 @@ import { Input } from '@/components/ui/input'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { getTokens } from '@/lib/auth'
 import { useToast } from '@/components/ui/use-toast'
-import { getConfig, getLocalItem, setConfig, setLocalItem } from '@/lib/storage'
+import { getConfig, setConfig } from '@/lib/storage'
 
 const schema = z.object({
   username: z.string().email('Correo electrónico inválido'),
@@ -52,8 +52,6 @@ export default function AuthLogin () {
       return
     }
 
-    setLocalItem('tokens', tokens, true)
-    setLocalItem('user', data, true)
     setConfig({
       ...data,
       ...tokens
@@ -80,12 +78,6 @@ export default function AuthLogin () {
   }
 
   useEffect(() => {
-    const user = getLocalItem('user', true)
-    if (user != null) {
-      form.setValue('username', user.username)
-      form.setValue('password', user.password)
-    }
-
     const setFromConfig = async () => {
       const config = await getConfig()
 
